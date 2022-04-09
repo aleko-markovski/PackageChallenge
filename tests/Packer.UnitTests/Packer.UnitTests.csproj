@@ -25,4 +25,8 @@
     <ProjectReference Include="..\..\src\com\mobiquity\packer\Packer\Packer\Packer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
 </Project>
