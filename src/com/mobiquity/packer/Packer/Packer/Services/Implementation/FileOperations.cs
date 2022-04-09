@@ -1,7 +1,5 @@
 ﻿using Packer.ContentProvider;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace Packer.Services
 {
@@ -9,7 +7,8 @@ namespace Packer.Services
     {
         public string[] ReadAllLines(string path)
         {
-            throw new NotImplementedException();
+            var fullPath = Path.GetFullPath(path);
+            return File.ReadAllLines(fullPath);
         }
     }
 }
