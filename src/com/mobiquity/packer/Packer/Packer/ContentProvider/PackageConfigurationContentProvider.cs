@@ -12,10 +12,21 @@ namespace Packer.ContentProvider
 {
     public class PackageConfigurationContentProvider : FileContentProvider
     {
+        private readonly IFileOperations _fileOperations;
+        public PackageConfigurationContentProvider(IFileOperations fileOperations)
+        {
+            _fileOperations = fileOperations;
+        }
+
+        protected override string[] Extract(string path)
+        {
+            return _fileOperations.ReadAllLines(path);
+        }
+
         protected override List<PackageConfiguration> Transform(ICollection<string> contentLines)
         {
             if (contentLines.Count == 0)
-                throw new ArgumentNullException("Content lines enumerable parameter cannot be empty");
+                throw new ParsingException("Content lines enumerable parameter cannot be empty");
 
             var packagesList = new List<PackageConfiguration>();
 

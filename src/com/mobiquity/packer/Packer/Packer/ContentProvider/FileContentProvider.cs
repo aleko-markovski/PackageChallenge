@@ -6,11 +6,7 @@ namespace Packer.ContentProvider
 {
     public abstract class FileContentProvider
     {
-        public string[] Extract(string path)
-        {
-            var fullPath = Path.GetFullPath(path);
-            return File.ReadAllLines(fullPath);
-        }
+        protected abstract string[] Extract(string path);
         protected abstract List<PackageConfiguration> Transform(ICollection<string> contentLines);
 
         public List<PackageConfiguration> Load(string filePath)

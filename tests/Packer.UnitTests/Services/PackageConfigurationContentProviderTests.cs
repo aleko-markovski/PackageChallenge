@@ -1,12 +1,10 @@
-﻿using FluentAssertions;
+﻿using FakeItEasy;
+using FluentAssertions;
 using Packer.ContentProvider;
+using Packer.Exceptions;
 using Packer.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Packer.UnitTests.Services
@@ -14,22 +12,16 @@ namespace Packer.UnitTests.Services
     public class PackageConfigurationContentProviderTests
     {
         private readonly FileContentProvider _contentProvider;
-        private const string _validContentFilePath = @"Resources/valid_test_input";
+        private readonly IFileOperations _fileOperations;
+        private const string _filePath = @"dummyFilePaht";
         public PackageConfigurationContentProviderTests()
         {
-            _contentProvider = new PackageConfigurationContentProvider();
+            _fileOperations = A.Fake<IFileOperations>();
+            _contentProvider = new PackageConfigurationContentProvider(_fileOperations);
         }
 
-        public static IEnumerable<object[]> RelativeAbsoluteFilePath
-           => new object[][] {
-                new object[] { _validContentFilePath },
-                new object[] { Path.GetFullPath(_validContentFilePath)} 
-           };
-
-
-        [Theory]
-        [MemberData(nameof(RelativeAbsoluteFilePath))]
-        public void LoadContentFromFile_Relative(string path)
+        [Fact]
+        public void LoadContentFromFile_Success()
         {
             var expectedResult = new List<PackageConfiguration>()
             {
@@ -48,9 +40,66 @@ namespace Packer.UnitTests.Services
                 }
             };
 
-            var result = _contentProvider.Load(path);
-            
+            A.CallTo(() => _fileOperations.ReadAllLines(A<string>.Ignored)).Returns(new string[] { "81 : (1,53.38,€45) (2,88.62,€98) (3,78.48,€3) (4,72.30,€76) (5,30.18,€9) (6,46.34,€48)" });
+
+            var result = _contentProvider.Load(_filePath);
+
             result.Should().BeEquivalentTo(expectedResult);
+        }
+
+        public static IEnumerable<object[]> ItemsStrings
+           => new object[][] {
+                        new object[] { "81 : (a,53.38,€45)" },
+                        new object[] { "81 : (1,a.38, €45)" },
+                        new object[] { "81 : (-a,53.a, €45)" },
+                        new object[] { "81 : (1,a.38,€45)" },
+                        new object[] { "81 : (1,a,€45)" },
+                        new object[] { "81 : (,53.38,€45)" },
+                        new object[] { "81 : (1,,€45)" },
+                        new object[] { "81 : (1,53.38,)" },
+                        new object[] { "81 : (1,53.38,45)" },
+                        new object[] { "81 : (,€45)" },
+                        new object[] { "81 : (1,)" },
+                        new object[] { "81 : (,53.38,)" },
+                        new object[] { "81 : ()" },
+           };
+
+
+        [Theory]
+        [MemberData(nameof(ItemsStrings))]
+        public void LoadContentFromFile_ItemsParseException(string textLine)
+        {
+            A.CallTo(() => _fileOperations.ReadAllLines(A<string>.Ignored)).Returns(new string[] { textLine });
+
+            _contentProvider.Invoking(x => x.Load(_filePath)).Should().Throw<ParsingException>();
+        }
+
+        public static IEnumerable<object[]> LineStrings
+            => new object[][] {
+                                new object[] { "81 : (1,53.38,€45)(2,88.62,€98)" },
+                                new object[] { "81 : : (1,53.38,€45) (2,88.62,€98)" },
+                                new object[] { "81: (1,53.38,€45)-(2,88.62,€98)" },
+                                new object[] { "81 (1,53.38,€45) (2,88.62,€98)" },
+                                new object[] { " : (1,53.38,€45) (2,88.62,€98)" },
+                                new object[] { "81 : " },
+            };
+
+
+        [Theory]
+        [MemberData(nameof(LineStrings))]
+        public void LoadContentFromFile_LineParseException(string textLine)
+        {
+            A.CallTo(() => _fileOperations.ReadAllLines(A<string>.Ignored)).Returns(new string[] { textLine });
+
+            _contentProvider.Invoking(x => x.Load(_filePath)).Should().Throw<ParsingException>();
+        }
+
+        [Fact]
+        public void LoadContentFromFile_EmptyInputParseException()
+        {
+            A.CallTo(() => _fileOperations.ReadAllLines(A<string>.Ignored)).Returns(new string[] {});
+
+            _contentProvider.Invoking(x => x.Load(_filePath)).Should().Throw<ParsingException>();
         }
     }
 }
