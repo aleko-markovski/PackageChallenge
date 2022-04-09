@@ -75,7 +75,7 @@ namespace Packer.UnitTests.Services
                 new object[] {
                     new PackageConfiguration()
                     {
-                        MaxWeight = 81,
+                        MaxWeight = 56,
                         ItemOptions = new HashSet<PackageItem>()
                         {
                             new PackageItem(1, 90.72, 13),
