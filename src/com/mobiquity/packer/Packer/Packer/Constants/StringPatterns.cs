@@ -13,5 +13,6 @@ namespace Core.Constrains
     {
         /// <value>\u20AC is Unicode for the euro sign</value>
         public const string ItemPattern = @"\((?<index>\d+),(?<weight>\d+\.\d+),\u20AC(?<cost>\d+)\)";
+        public const string LinePattern = @"\d+?\s+?\:(\s+?\(.+?\))+";
     }
 }

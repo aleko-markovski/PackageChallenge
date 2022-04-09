@@ -32,37 +32,59 @@ namespace Packer.ContentProvider
 
             foreach (var line in contentLines)
             {
-                var lineSections = line.Split(':', 2);
+                ValidateLineFormat(line);
+                var lineSections = GetSections(line);
 
-                if (lineSections.Length != 2)
-                    throw new ParsingException("Source string is not in the correct format");
-
-                var itemsSourceStrings = lineSections.ElementAt(1).Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries);
-
-                // This regex pattern includes validation for digits
-                var itemPattern = new Regex(StringPatterns.ItemPattern);
+                var itemsStrings = lineSections.ElementAt(1).Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
                 var maxWeight = int.Parse(lineSections.ElementAt(0).Trim());
                 var packageConfig = new PackageConfiguration() { MaxWeight = maxWeight };
 
-                foreach (var itemSourceString in itemsSourceStrings)
+                // This regex pattern includes validation for digits
+                var itemPattern = new Regex(StringPatterns.ItemPattern);
+
+                foreach (var itemString in itemsStrings)
                 {
-                    var match = itemPattern.Match(itemSourceString);
-
-                    if (!match.Success)
-                        throw new ParsingException($"Error while parsing item source string. Source value: { itemSourceString }");
-
-                    var index = int.Parse(match.Groups["index"].Value);
-                    var weight = double.Parse(match.Groups["weight"].Value);
-                    var cost = int.Parse(match.Groups["cost"].Value);
-
-                    packageConfig.ItemOptions.Add(new PackageItem(index, weight, cost));
+                    var matchedItem = GetPackageItemFromMatch(itemString, itemPattern);
+                    packageConfig.ItemOptions.Add(matchedItem);
                 }
 
                 packagesList.Add(packageConfig);
             }
 
             return packagesList;
+        }
+
+        private void ValidateLineFormat(string lineString)
+        {
+            var linePattern = new Regex(StringPatterns.LinePattern);
+
+            if (linePattern.Match(lineString).Value != lineString)
+                throw new ParsingException($"Source string is not in the correct format. String value: {lineString}");
+        }
+
+        private string[] GetSections(string lineString)
+        {
+            var lineSections = lineString.Split(':', 2);
+
+            if (lineSections.Length != 2)
+                throw new ParsingException("Source string is not in the correct format");
+
+            return lineSections;
+        }
+
+        private PackageItem GetPackageItemFromMatch(string itemString, Regex regex)
+        {
+            var match = regex.Match(itemString);
+
+            if (!match.Success)
+                throw new ParsingException($"Error while parsing item source string. Source value: { itemString }");
+
+            var index = int.Parse(match.Groups["index"].Value);
+            var weight = double.Parse(match.Groups["weight"].Value);
+            var cost = int.Parse(match.Groups["cost"].Value);
+
+            return new PackageItem(index, weight, cost);
         }
     }
 }
