@@ -4,14 +4,14 @@
     "C:\\_Files\\PackageChallenge\\tests\\Packer.UnitTests\\Packer.UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj": {
+    "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj",
-        "projectName": "Packer",
-        "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj",
+        "projectUniqueName": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj",
+        "projectName": "Packer.Core",
+        "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj",
         "packagesPath": "C:\\Users\\Aleko Markovski\\.nuget\\packages\\",
-        "outputPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\obj\\",
+        "outputPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aleko Markovski\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,7 @@
         "frameworks": {
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
-            "projectReferences": {
-              "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj": {
-                "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -63,14 +59,14 @@
         }
       }
     },
-    "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj": {
+    "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\Packer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj",
-        "projectName": "Packer.Core",
-        "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj",
+        "projectUniqueName": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\Packer.csproj",
+        "projectName": "Packer",
+        "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\Packer.csproj",
         "packagesPath": "C:\\Users\\Aleko Markovski\\.nuget\\packages\\",
-        "outputPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\obj\\",
+        "outputPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aleko Markovski\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -87,7 +83,11 @@
         "frameworks": {
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj": {
+                "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -143,11 +143,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj": {
-                "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj"
+              "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj": {
+                "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj"
               },
-              "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj": {
-                "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj"
+              "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\Packer.csproj": {
+                "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\Packer.csproj"
               }
             }
           }

@@ -6640,13 +6640,13 @@
     },
     "Packer/1.0.0": {
       "type": "project",
-      "path": "../../src/com/mobiquity/packer/PackerMain/Packer/Packer.csproj",
-      "msbuildProject": "../../src/com/mobiquity/packer/PackerMain/Packer/Packer.csproj"
+      "path": "../../src/com/mobiquity/packer/Packer/PackerMain/Packer/Packer.csproj",
+      "msbuildProject": "../../src/com/mobiquity/packer/Packer/PackerMain/Packer/Packer.csproj"
     },
     "Packer.Core/1.0.0": {
       "type": "project",
-      "path": "../../src/com/mobiquity/packer/Packer/Packer/Packer.Core.csproj",
-      "msbuildProject": "../../src/com/mobiquity/packer/Packer/Packer/Packer.Core.csproj"
+      "path": "../../src/com/mobiquity/packer/Packer/PackerCore/Packer.Core.csproj",
+      "msbuildProject": "../../src/com/mobiquity/packer/Packer/PackerCore/Packer.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6689,11 +6689,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj": {
-              "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj"
+            "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj": {
+              "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerCore\\Packer.Core.csproj"
             },
-            "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj": {
-              "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj"
+            "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\Packer.csproj": {
+              "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\PackerMain\\Packer\\Packer.csproj"
             }
           }
         }

@@ -23,12 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\com\mobiquity\packer\PackerMain\Packer\Packer.csproj" />
-    <ProjectReference Include="..\..\src\com\mobiquity\packer\Packer\Packer\Packer.Core.csproj" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <ProjectReference Include="..\..\src\com\mobiquity\packer\Packer\PackerCore\Packer.Core.csproj" />
+    <ProjectReference Include="..\..\src\com\mobiquity\packer\Packer\PackerMain\Packer\Packer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
