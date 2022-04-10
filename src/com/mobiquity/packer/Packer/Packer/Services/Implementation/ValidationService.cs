@@ -22,6 +22,9 @@ namespace Packer.Services.Implementation
         {
             if (!(0 <= packageConfiguration.MaxWeight && packageConfiguration.MaxWeight <= Constraints.PackageMaxWeight))
                 throw new ValidationException("MaxWeight validation error");
+
+            if (packageConfiguration.ItemOptions.Count > Constraints.MaxNumberOfItems)
+                throw new ValidationException("Max number of items validation error");
         }
     }
 }
