@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.csproj",
-      "projectName": "Packer",
-      "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.csproj",
+      "projectUniqueName": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj",
+      "projectName": "Packer.Core",
+      "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj",
       "packagesPath": "C:\\Users\\Aleko Markovski\\.nuget\\packages\\",
       "outputPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\obj\\",
       "projectStyle": "PackageReference",

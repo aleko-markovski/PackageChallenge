@@ -1880,11 +1880,24 @@
       "Packer/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Packer.Core": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Packer.dll": {}
         },
         "runtime": {
           "bin/placeholder/Packer.dll": {}
+        }
+      },
+      "Packer.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Packer.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Packer.Core.dll": {}
         }
       }
     }
@@ -6627,8 +6640,13 @@
     },
     "Packer/1.0.0": {
       "type": "project",
-      "path": "../../src/com/mobiquity/packer/Packer/Packer/Packer.csproj",
-      "msbuildProject": "../../src/com/mobiquity/packer/Packer/Packer/Packer.csproj"
+      "path": "../../src/com/mobiquity/packer/PackerMain/Packer/Packer.csproj",
+      "msbuildProject": "../../src/com/mobiquity/packer/PackerMain/Packer/Packer.csproj"
+    },
+    "Packer.Core/1.0.0": {
+      "type": "project",
+      "path": "../../src/com/mobiquity/packer/Packer/Packer/Packer.Core.csproj",
+      "msbuildProject": "../../src/com/mobiquity/packer/Packer/Packer/Packer.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6637,6 +6655,7 @@
       "FluentAssertions >= 6.6.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Packer >= 1.0.0",
+      "Packer.Core >= 1.0.0",
       "coverlet.collector >= 3.1.0",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.3"
@@ -6670,8 +6689,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.csproj": {
-              "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.csproj"
+            "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj": {
+              "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\PackerMain\\Packer\\Packer.csproj"
+            },
+            "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj": {
+              "projectPath": "C:\\_Files\\PackageChallenge\\src\\com\\mobiquity\\packer\\Packer\\Packer\\Packer.Core.csproj"
             }
           }
         }

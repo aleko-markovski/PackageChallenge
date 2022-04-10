@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packer", "Packer\Packer.csproj", "{8AE0021B-6CB2-44B3-8787-7B58AD09E91B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Packer.Core", "Packer\Packer.Core.csproj", "{8AE0021B-6CB2-44B3-8787-7B58AD09E91B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packer.UnitTests", "..\..\..\..\..\tests\Packer.UnitTests\Packer.UnitTests.csproj", "{C17A5392-D935-4931-ADD1-2F4DAFB030E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Packer.UnitTests", "..\..\..\..\..\tests\Packer.UnitTests\Packer.UnitTests.csproj", "{C17A5392-D935-4931-ADD1-2F4DAFB030E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packer", "..\PackerMain\Packer\Packer.csproj", "{2161B63E-F7BB-4C9A-8258-C7A5BDAAB00D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C17A5392-D935-4931-ADD1-2F4DAFB030E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C17A5392-D935-4931-ADD1-2F4DAFB030E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C17A5392-D935-4931-ADD1-2F4DAFB030E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2161B63E-F7BB-4C9A-8258-C7A5BDAAB00D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2161B63E-F7BB-4C9A-8258-C7A5BDAAB00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2161B63E-F7BB-4C9A-8258-C7A5BDAAB00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2161B63E-F7BB-4C9A-8258-C7A5BDAAB00D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
