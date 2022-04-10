@@ -18,11 +18,11 @@ namespace Packer.UnitTests.Services
 
         public static IEnumerable<object[]> TestCases
            => new object[][] {
-                new object[] { 
+                new object[] {
                     new PackageConfiguration()
                     {
                         MaxWeight = 81,
-                        ItemOptions = new HashSet<PackageItem>()
+                        ItemOptions = new List<PackageItem>()
                         {
                             new PackageItem(1, 53.38, 45),
                             new PackageItem(2, 88.62, 98),
@@ -31,7 +31,7 @@ namespace Packer.UnitTests.Services
                             new PackageItem(5,30.18,9),
                             new PackageItem(6,46.34,48)
                         }
-                    }, 
+                    },
                     new List<PackageItem>()
                     {
                         new PackageItem(4,72.30,76)
@@ -41,7 +41,7 @@ namespace Packer.UnitTests.Services
                     new PackageConfiguration()
                     {
                         MaxWeight = 8,
-                        ItemOptions = new HashSet<PackageItem>()
+                        ItemOptions = new List<PackageItem>()
                         {
                             new PackageItem(1, 15.3, 34)
                         }
@@ -52,7 +52,7 @@ namespace Packer.UnitTests.Services
                     new PackageConfiguration()
                     {
                         MaxWeight = 75,
-                        ItemOptions = new HashSet<PackageItem>()
+                        ItemOptions = new List<PackageItem>()
                         {
                             new PackageItem(1, 85.31, 29),
                             new PackageItem(2, 14.55, 74),
@@ -76,7 +76,7 @@ namespace Packer.UnitTests.Services
                     new PackageConfiguration()
                     {
                         MaxWeight = 56,
-                        ItemOptions = new HashSet<PackageItem>()
+                        ItemOptions = new List<PackageItem>()
                         {
                             new PackageItem(1, 90.72, 13),
                             new PackageItem(2, 33.80, 48),
@@ -106,6 +106,6 @@ namespace Packer.UnitTests.Services
 
             solutionItems.Should().BeEquivalentTo(expectedResult);
         }
- 
+
     }
 }

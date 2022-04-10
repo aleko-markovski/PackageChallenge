@@ -28,7 +28,7 @@ namespace Packer.UnitTests.Services
                 new PackageConfiguration()
                 {
                     MaxWeight = 81,
-                    ItemOptions = new HashSet<PackageItem>()
+                    ItemOptions = new List<PackageItem>()
                     {
                         new PackageItem(1, 53.38, 45),
                         new PackageItem(2, 88.62, 98),
@@ -97,7 +97,7 @@ namespace Packer.UnitTests.Services
         [Fact]
         public void LoadContentFromFile_EmptyInputParseException()
         {
-            A.CallTo(() => _fileOperations.ReadAllLines(A<string>.Ignored)).Returns(new string[] {});
+            A.CallTo(() => _fileOperations.ReadAllLines(A<string>.Ignored)).Returns(new string[] { });
 
             _contentProvider.Invoking(x => x.Load(_filePath)).Should().Throw<ParsingException>();
         }

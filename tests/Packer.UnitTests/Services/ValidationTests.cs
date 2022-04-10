@@ -31,7 +31,7 @@ namespace Packer.UnitTests.Services
             var packageConfig = new PackageConfiguration()
             {
                 MaxWeight = maxWeight,
-                ItemOptions = new HashSet<PackageItem>()
+                ItemOptions = new List<PackageItem>()
                 {
                     new PackageItem(1, 53.38, 45)
                 }
@@ -46,7 +46,7 @@ namespace Packer.UnitTests.Services
             var packageConfig = new PackageConfiguration()
             {
                 MaxWeight = 81,
-                ItemOptions = new HashSet<PackageItem>()
+                ItemOptions = new List<PackageItem>()
                 {
                     new PackageItem(1, 53.38, 45),
                     new PackageItem(2, 53.38, 45),
@@ -84,7 +84,7 @@ namespace Packer.UnitTests.Services
             var packageConfig = new PackageConfiguration()
             {
                 MaxWeight = 81,
-                ItemOptions = new HashSet<PackageItem>()
+                ItemOptions = new List<PackageItem>()
                 {
                     new PackageItem(1, weight, 45),
                     new PackageItem(2, weight, 80)
@@ -107,7 +107,7 @@ namespace Packer.UnitTests.Services
             var packageConfig = new PackageConfiguration()
             {
                 MaxWeight = 81,
-                ItemOptions = new HashSet<PackageItem>()
+                ItemOptions = new List<PackageItem>()
                 {
                     new PackageItem(1, 12.5, cost),
                     new PackageItem(2, 50.36, cost)
@@ -131,7 +131,7 @@ namespace Packer.UnitTests.Services
             var packageConfig = new PackageConfiguration()
             {
                 MaxWeight = maxPackageWeight,
-                ItemOptions = new HashSet<PackageItem>()
+                ItemOptions = new List<PackageItem>()
                 {
                     new PackageItem(1, itemWeight, itemCost)
                 }

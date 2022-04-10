@@ -1,4 +1,5 @@
 ﻿
+using Packer.Core.Models;
 using Packer.Models;
 using System;
 using System.Collections.Generic;
@@ -10,36 +11,56 @@ namespace Packer.Solution.Implementation
     {
         /// <summary>
         /// Algorithm method used to solve the Knapsack problem with item packaging
-        /// The method time complexity is derived from the OrderBy -> ThenBy sorting method time complexity (QuickSort) which is on avarege O(N*logN)
-        /// The LINQ OrderBy -> ThenBy method chain forms a single sort operation by multiple sort keys
+        /// The algorithm used is Recursion by Brute-Force algorithm.
+        /// The Algorithm has complexity of O(2^n), but it is one of the most flexible and efficient solutions for decimal values
+        /// This can be used for any decimal precision
         /// </summary>
-        /// <param name="configuration">Package configuration containing package maximum weight and items to chose from</param>
+        /// <param name="configuration">Package configuration containing: package maximum weight and items to chose from</param>
         /// <returns type="List<PackageItems>">Selected items for most optimal packaging</returns>
+        /// 
         public List<PackageItem> Solve(PackageConfiguration configuration)
         {
-            var sortedItemOptions = configuration.ItemOptions.OrderByDescending(x => x.Cost).ThenBy(x => x.Weight);
+            var result = SolveRecursive(configuration);
+            return result.Items;
 
-            double remainingWeight = configuration.MaxWeight;
-            double resultValue = 0d;
+        }
+        private static RecursiveSolutionResult SolveRecursive(PackageConfiguration configuration)
+        {
+            var packageMaxWeight = configuration.MaxWeight;
+            var itemsCount = configuration.ItemOptions.Count;
 
-            var selectedItems = new List<PackageItem>();
+            var itemOptions = configuration.ItemOptions;
 
-            foreach (var item in sortedItemOptions)
+            if (itemsCount == 0 || packageMaxWeight == 0)
+                return new RecursiveSolutionResult();
+
+            var lastItem = itemOptions.Last();
+            var remainingItems = itemOptions.GetRange(0, itemsCount - 1);
+
+            // If weight of the nth item is larger than max package capacity, do not include item
+            if (lastItem.Weight > packageMaxWeight)
             {
-                if (item.Weight <= remainingWeight)
-                {
-                    remainingWeight -= item.Weight;
-                    resultValue += item.Cost;
-
-                    selectedItems.Add(item);
-                }
-
-                // If the package is filled completly do not check the remaining items
-                if (remainingWeight == 0)
-                    break;
+                return SolveRecursive(new PackageConfiguration() { MaxWeight = packageMaxWeight, ItemOptions = remainingItems });
             }
+            else
+            {
+                var nthItemIncludedResult = SolveRecursive(new PackageConfiguration() { MaxWeight = packageMaxWeight - lastItem.Weight, ItemOptions = remainingItems });
+                // Store included items and total cost and weight 
+                nthItemIncludedResult.Cost += lastItem.Cost;
+                nthItemIncludedResult.Items.Add(lastItem);
+                nthItemIncludedResult.Weight += lastItem.Weight;
 
-            return selectedItems.OrderBy(x => x.Index).ToList();
+                var nthItemExcludedResult = SolveRecursive(new PackageConfiguration() { MaxWeight = packageMaxWeight, ItemOptions = remainingItems });
+
+                // Return the maximum cost (object result) of two cases: nth item included, nth item not included
+                return Max(nthItemIncludedResult, nthItemExcludedResult);
+            }
+        }
+
+        private static RecursiveSolutionResult Max(RecursiveSolutionResult a, RecursiveSolutionResult b)
+        {
+            if (a.Cost == b.Cost) return a.Weight <= b.Weight ? a : b;
+            return a.Cost > b.Cost ? a : b;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace Packer.Models
     public class PackageConfiguration
     {
         public double MaxWeight { get; set; }
-        public HashSet<PackageItem> ItemOptions { get; set; } = new HashSet<PackageItem>();
+        public List<PackageItem> ItemOptions { get; set; } = new List<PackageItem>();
     }
 }
