@@ -13,9 +13,13 @@ namespace Packer.ContentProvider
     public class PackageConfigurationContentProvider : FileContentProvider
     {
         private readonly IFileOperations _fileOperations;
+        private readonly Regex linePattern;
+        private readonly Regex itemPattern;
         public PackageConfigurationContentProvider(IFileOperations fileOperations)
         {
             _fileOperations = fileOperations;
+            linePattern = new Regex(StringPatterns.LinePattern);
+            itemPattern = new Regex(StringPatterns.ItemPattern);
         }
 
         protected override string[] Extract(string path)
@@ -40,9 +44,6 @@ namespace Packer.ContentProvider
                 var maxWeight = int.Parse(lineSections.ElementAt(0).Trim());
                 var packageConfig = new PackageConfiguration() { MaxWeight = maxWeight };
 
-                // This regex pattern includes validation for digits
-                var itemPattern = new Regex(StringPatterns.ItemPattern);
-
                 foreach (var itemString in itemsStrings)
                 {
                     var matchedItem = GetPackageItemFromMatch(itemString, itemPattern);
@@ -57,8 +58,6 @@ namespace Packer.ContentProvider
 
         private void ValidateLineFormat(string lineString)
         {
-            var linePattern = new Regex(StringPatterns.LinePattern);
-
             if (linePattern.Match(lineString).Value != lineString)
                 throw new ParsingException($"Source string is not in the correct format. String value: {lineString}");
         }

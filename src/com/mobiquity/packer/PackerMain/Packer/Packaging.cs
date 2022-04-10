@@ -5,6 +5,12 @@ namespace Packer
 {
     public static class Packaging
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        /// <exception cref="APIException">The method intersepts all exceptions thrown in the implementation services and </exception>
         public static string Pack(string fileName)
         {
             try
