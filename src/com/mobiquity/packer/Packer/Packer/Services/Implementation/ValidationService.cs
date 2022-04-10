@@ -24,6 +24,7 @@ namespace Packer.Services.Implementation
             ValidatePackageMaxWeight(packageConfiguration.MaxWeight);
             ValidateMaxNumberOfItems(packageConfiguration.ItemOptions);
             ValidateItemWeight(packageConfiguration.ItemOptions);
+            ValidateItemCost(packageConfiguration.ItemOptions);
         }
 
         private void ValidatePackageMaxWeight(double packageMaxWeight)
@@ -43,6 +44,13 @@ namespace Packer.Services.Implementation
             var itemsWithInvalidWeight = items.Where(x => !(0 < x.Weight && x.Weight <= Constraints.ItemMaxWeight));
             if (itemsWithInvalidWeight.Any())
                 throw new ValidationException($"Invalid item(s) weight error: Fault Items: {string.Join(" ", itemsWithInvalidWeight.Select(x => x.ToString()))}");
+        }
+
+        private void ValidateItemCost(HashSet<PackageItem> items)
+        {
+            var itemsWithInvalidCost = items.Where(x => !(0 <= x.Cost && x.Cost <= Constraints.ItemMaxCost));
+            if (itemsWithInvalidCost.Any())
+                throw new ValidationException($"Invalid item(s) cost error: Fault Items: {string.Join(" ", itemsWithInvalidCost.Select(x => x.ToString()))}");
         }
     }
 }
