@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PackerCore\Packer.Core.csproj" />
+    <ProjectReference Include="..\PackerCore\Packer.Core.csproj" />
   </ItemGroup>
 
 </Project>
