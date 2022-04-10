@@ -116,5 +116,28 @@ namespace Packer.UnitTests.Services
 
             _sut.Invoking(x => x.Validate(packageConfig)).Should().Throw<ValidationException>();
         }
+
+        public static IEnumerable<object[]> PackageValidData
+           => new object[][] {
+                                new object[] { 100.00, 100.00, 100 },
+                                new object[] { 50.00, 50.00, 50 },
+                                new object[] { 0, 10, 0}
+           };
+
+        [Theory]
+        [MemberData(nameof(PackageValidData))]
+        public void ValidateItemsCost_Success(double maxPackageWeight, double itemWeight, int itemCost)
+        {
+            var packageConfig = new PackageConfiguration()
+            {
+                MaxWeight = maxPackageWeight,
+                ItemOptions = new HashSet<PackageItem>()
+                {
+                    new PackageItem(1, itemWeight, itemCost)
+                }
+            };
+
+            _sut.Invoking(x => x.Validate(packageConfig)).Should().NotThrow<ValidationException>();
+        }
     }
 }
