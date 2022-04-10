@@ -21,7 +21,6 @@ namespace Packer.UnitTests.Services
         public static IEnumerable<object[]> MaxWeightData
            => new object[][] {
                 new object[] { 110 },
-                new object[] { 0 },
                 new object[] { -10 }
            };
 
