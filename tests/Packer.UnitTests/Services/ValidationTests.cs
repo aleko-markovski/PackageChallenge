@@ -87,6 +87,7 @@ namespace Packer.UnitTests.Services
                 ItemOptions = new HashSet<PackageItem>()
                 {
                     new PackageItem(1, weight, 45),
+                    new PackageItem(2, weight, 80)
                 }
             };
 

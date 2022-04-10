@@ -16,5 +16,10 @@ namespace Packer.Models
             Weight = weight;    
             Cost = cost;
         }
+
+        public override string ToString()
+        {
+            return $"({Index},{Weight},{Cost})";
+        }
     }
 }
