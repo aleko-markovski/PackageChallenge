@@ -18,14 +18,14 @@ namespace Packer.UnitTests.Services
             _sut = new ValidationService();
         }
 
-        public static IEnumerable<object[]> MaxWeightData
+        public static IEnumerable<object[]> MaxWeightInvalidData
            => new object[][] {
                 new object[] { 110 },
                 new object[] { -10 }
            };
 
         [Theory]
-        [MemberData(nameof(MaxWeightData))]
+        [MemberData(nameof(MaxWeightInvalidData))]
         public void ValidateMaxWeight_ThrowValidationException(int maxWeight)
         {
             var packageConfig = new PackageConfiguration()
@@ -64,6 +64,29 @@ namespace Packer.UnitTests.Services
                     new PackageItem(14, 53.38, 45),
                     new PackageItem(15, 53.38, 45),
                     new PackageItem(16, 53.38, 45)
+                }
+            };
+
+            _sut.Invoking(x => x.Validate(packageConfig)).Should().Throw<ValidationException>();
+        }
+
+        public static IEnumerable<object[]> ItemWeightInvalidData
+           => new object[][] {
+                new object[] { -10 },
+                new object[] { 0 },
+                new object[] { 110 },
+           };
+
+        [Theory]
+        [MemberData(nameof(ItemWeightInvalidData))]
+        public void ValidateItemsWeight_ThrowValidationException(double weight)
+        {
+            var packageConfig = new PackageConfiguration()
+            {
+                MaxWeight = 81,
+                ItemOptions = new HashSet<PackageItem>()
+                {
+                    new PackageItem(1, weight, 45),
                 }
             };
 
