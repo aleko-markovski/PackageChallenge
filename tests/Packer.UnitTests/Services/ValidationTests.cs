@@ -39,5 +39,35 @@ namespace Packer.UnitTests.Services
 
             _sut.Invoking(x => x.Validate(packageConfig)).Should().Throw<ValidationException>();
         }
+
+        [Fact]
+        public void ValidateNumberOfItems_ThrowValidationException()
+        {
+            var packageConfig = new PackageConfiguration()
+            {
+                MaxWeight = 81,
+                ItemOptions = new HashSet<PackageItem>()
+                {
+                    new PackageItem(1, 53.38, 45),
+                    new PackageItem(2, 53.38, 45),
+                    new PackageItem(3, 53.38, 45),
+                    new PackageItem(4, 53.38, 45),
+                    new PackageItem(5, 53.38, 45),
+                    new PackageItem(6, 53.38, 45),
+                    new PackageItem(7, 53.38, 45),
+                    new PackageItem(8, 53.38, 45),
+                    new PackageItem(9, 53.38, 45),
+                    new PackageItem(10, 53.38, 45),
+                    new PackageItem(11, 53.38, 45),
+                    new PackageItem(12, 53.38, 45),
+                    new PackageItem(13, 53.38, 45),
+                    new PackageItem(14, 53.38, 45),
+                    new PackageItem(15, 53.38, 45),
+                    new PackageItem(16, 53.38, 45)
+                }
+            };
+
+            _sut.Invoking(x => x.Validate(packageConfig)).Should().Throw<ValidationException>();
+        }
     }
 }
