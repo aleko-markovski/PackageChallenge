@@ -74,7 +74,7 @@ namespace Packer.UnitTests.Services
            => new object[][] {
                 new object[] { -10 },
                 new object[] { 0 },
-                new object[] { 110 },
+                new object[] { 110 }
            };
 
         [Theory]
@@ -88,6 +88,29 @@ namespace Packer.UnitTests.Services
                 {
                     new PackageItem(1, weight, 45),
                     new PackageItem(2, weight, 80)
+                }
+            };
+
+            _sut.Invoking(x => x.Validate(packageConfig)).Should().Throw<ValidationException>();
+        }
+
+        public static IEnumerable<object[]> ItemCostInvalidData
+           => new object[][] {
+                        new object[] { -10 },
+                        new object[] { 110 }
+           };
+
+        [Theory]
+        [MemberData(nameof(ItemCostInvalidData))]
+        public void ValidateItemsCost_ThrowValidationException(int cost)
+        {
+            var packageConfig = new PackageConfiguration()
+            {
+                MaxWeight = 81,
+                ItemOptions = new HashSet<PackageItem>()
+                {
+                    new PackageItem(1, 12.5, cost),
+                    new PackageItem(2, 50.36, cost)
                 }
             };
 

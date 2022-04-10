@@ -43,7 +43,6 @@ namespace Packer.Services.Implementation
             var itemsWithInvalidWeight = items.Where(x => !(0 < x.Weight && x.Weight <= Constraints.ItemMaxWeight));
             if (itemsWithInvalidWeight.Any())
                 throw new ValidationException($"Invalid item(s) weight error: Fault Items: {string.Join(" ", itemsWithInvalidWeight.Select(x => x.ToString()))}");
-
         }
     }
 }
