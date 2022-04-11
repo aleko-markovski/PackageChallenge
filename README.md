@@ -44,3 +44,6 @@ The project is developed in .NET Standard 2.1 to achieve full cross-platform com
 - xUnit
 - FluentAssertion
 - FakeItEasy  
+
+### Improvements
+- Implement logging.
