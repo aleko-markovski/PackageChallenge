@@ -1,5 +1,4 @@
-﻿using FakeItEasy;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Packer.Exceptions;
 using Packer.Models;
 using Packer.Services;

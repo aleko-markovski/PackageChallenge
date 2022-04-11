@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Packer.Models
 {
     /// <summary>
     /// PackageItem can be defined as struct for the need of this library since: 
-    /// It logically represents a single value, similar to primitive types.
+    /// It represents a single item logic, similar to primitive types.
     /// It is immutable.
     /// </summary>
     public struct PackageItem

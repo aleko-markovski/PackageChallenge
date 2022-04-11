@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Packer.Constants
+﻿namespace Packer.Constants
 {
     public static class Constraints
     {

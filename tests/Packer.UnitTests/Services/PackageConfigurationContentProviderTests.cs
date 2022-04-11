@@ -4,7 +4,6 @@ using Packer.ContentProvider;
 using Packer.Exceptions;
 using Packer.Models;
 using System.Collections.Generic;
-using System.IO;
 using Xunit;
 
 namespace Packer.UnitTests.Services

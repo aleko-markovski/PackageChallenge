@@ -1,6 +1,5 @@
 ﻿using Packer.Models;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Packer.ContentProvider
 {
