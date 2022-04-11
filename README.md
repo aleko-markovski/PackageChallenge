@@ -19,7 +19,7 @@ Therefore, the maximum value that can be obtained from ‘n’ items is the max 
 2. Value of nth item plus maximum value obtained by n-1 items and W minus the weight of the nth item (including nth item).
 If the weight of the ‘nth’ item is greater than ‘W’, then the nth item cannot be included and Case 1 is the only possibility.
 
-### Time & Space Complexities
+### Time Complexities
 The time complexity for this algorithm is `O(2^n)` which is considered to be not an optimal solution however it offers great flexibility and efficiency when there are decimals involved. 
 
 ## Design Patterns
