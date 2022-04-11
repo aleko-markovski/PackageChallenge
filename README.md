@@ -3,7 +3,6 @@ Implementation of Mobiquity Packaging Challenge.
 
 ## Algorithms
 Implemented Recursion by Brute-Force algorithm.
-Time complexity for this algorithm is O(2^n)which is considered to be not an optimal solution hoever it offers great flexibility and efficiency when there are decimals involved. 
 
 ### Approach
 Consider all subsets of items and calculate the total weight and value of all subsets. 
@@ -18,25 +17,25 @@ Therefore, the maximum value that can be obtained from ‘n’ items is the max 
 
 1. Maximum value obtained by n-1 items and W weight (excluding nth item).
 2. Value of nth item plus maximum value obtained by n-1 items and W minus the weight of the nth item (including nth item).
-If the weight of ‘nth’ item is greater than ‘W’, then the nth item cannot be included and Case 1 is the only possibility.
+If the weight of the ‘nth’ item is greater than ‘W’, then the nth item cannot be included and Case 1 is the only possibility.
 
 ### Time & Space Complexities
-Time complexity for this algorithm is `O(2^n)`which is considered to be not an optimal solution hoever it offers great flexibility and efficiency when there are decimals involved. 
+The time complexity for this algorithm is `O(2^n)` which is considered to be not an optimal solution however it offers great flexibility and efficiency when there are decimals involved. 
 
 ## Design Patterns
 ### Template Pattern
-The aplication is inspired by ETL systems where Template design pattern is commonly used.
+The application  is inspired by ETL systems where a Template design pattern is commonly used.
 In this application there is a process defined by the following steps:
-**Extract** - Another sub template proccess where content is read from file and transformed to data object
+**Extract** - Another sub template process  where content is read from a file and transformed to a data object
 **Validate** - Validate extracted data
 **Solve** - solve each data object (representing a packaging problem)
-**Publish** - Publish data to desired output format 
+**Publish** - Publish data to a desired output format 
 
 ### Strategy Patterns
-Strategy pattern is used in the template class where we decide which strategy (service) we use.
+A strategy pattern is used in the template class where we decide which strategy (service) we use.
 
 ### TDD Mindset
-This project is developed using the TDD process.
+This project is developed using a TDD process.
 
 ## Framework and libraries
 The project is developed in .NET Standard 2.1 to achieve full cross-platform compatibility.
