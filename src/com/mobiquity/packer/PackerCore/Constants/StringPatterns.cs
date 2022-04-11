@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core.Constrains
 {
-    /// <summary>
-    ///  
-    /// </summary>
     public static class StringPatterns
     {
+        
         /// <value>\u20AC is Unicode for the euro sign</value>
+        /// item values: weight, cost, index can be extracted in match group
         public const string ItemPattern = @"\((?<index>\d+),(?<weight>\d+\.\d+),\u20AC(?<cost>\d+)\)";
         public const string LinePattern = @"\d+?\s+?\:(\s+?\(.+?\))+";
     }

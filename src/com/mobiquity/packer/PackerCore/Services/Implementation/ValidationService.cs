@@ -30,27 +30,27 @@ namespace Packer.Services.Implementation
         private void ValidatePackageMaxWeight(double packageMaxWeight)
         {
             if (!(0 <= packageMaxWeight && packageMaxWeight <= Constraints.PackageMaxWeight))
-                throw new ValidationException("MaxWeight validation error");
+                throw new ValidationException("Validation error: MaxWeight validation error");
         }
 
         private void ValidateMaxNumberOfItems(List<PackageItem> items)
         {
             if (items.Count > Constraints.MaxNumberOfItems)
-                throw new ValidationException("Max number of items validation error");
+                throw new ValidationException("Validation error: Max number of items validation error");
         }
 
         private void ValidateItemWeight(List<PackageItem> items)
         {
             var itemsWithInvalidWeight = items.Where(x => !(0 < x.Weight && x.Weight <= Constraints.ItemMaxWeight));
             if (itemsWithInvalidWeight.Any())
-                throw new ValidationException($"Invalid item(s) weight error: Fault Items: {string.Join(" ", itemsWithInvalidWeight.Select(x => x.ToString()))}");
+                throw new ValidationException($"Validation error: Invalid item(s) weight error: Fault Items: {string.Join(" ", itemsWithInvalidWeight.Select(x => x.ToString()))}");
         }
 
         private void ValidateItemCost(List<PackageItem> items)
         {
             var itemsWithInvalidCost = items.Where(x => !(0 <= x.Cost && x.Cost <= Constraints.ItemMaxCost));
             if (itemsWithInvalidCost.Any())
-                throw new ValidationException($"Invalid item(s) cost error: Fault Items: {string.Join(" ", itemsWithInvalidCost.Select(x => x.ToString()))}");
+                throw new ValidationException($"Validation error: Invalid item(s) cost error: Fault Items: {string.Join(" ", itemsWithInvalidCost.Select(x => x.ToString()))}");
         }
     }
 }

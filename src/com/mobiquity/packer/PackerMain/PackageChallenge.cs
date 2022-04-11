@@ -11,12 +11,15 @@ using System.Text;
 
 namespace Packer
 {
+    /// <summary>
+    /// Implemetation of the Packaging template
+    /// </summary>
     public class PackageChallenge : PackagingTemplate
     {
-        readonly FileContentProvider _fileContentProvider;
-        IFileOperations _fileOperationsService;
-        readonly IValidation _validationService;
-        readonly ISolutionAlgorithm _solverService;
+        private readonly FileContentProvider _fileContentProvider;
+        private readonly IFileOperations _fileOperationsService;
+        private readonly IValidation _validationService;
+        private readonly ISolutionAlgorithm _solverService;
 
         public PackageChallenge()
         {
@@ -31,9 +34,9 @@ namespace Packer
             return _fileContentProvider.Load(filePath);
         }
 
-        public override string Publish(List<PackageItem> items)
+        public override void Validate(PackageConfiguration packagConfiguration)
         {
-            return StringifyItems.ToDelimitedString(items, ",", x => x.Index.ToString(), "-");
+            _validationService.Validate(packagConfiguration);
         }
 
         public override List<PackageItem> Solve(PackageConfiguration configuration)
@@ -41,9 +44,9 @@ namespace Packer
             return _solverService.Solve(configuration);
         }
 
-        public override void Validate(PackageConfiguration packagConfiguration)
+        public override string Publish(List<PackageItem> items)
         {
-            _validationService.Validate(packagConfiguration);
+            return StringifyItems.ToDelimitedString(items, ",", x => x.Index.ToString(), "-");
         }
     }
 }

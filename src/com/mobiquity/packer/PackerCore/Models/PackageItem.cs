@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Packer.Models
 {
-    public class PackageItem
+    /// <summary>
+    /// PackageItem can be defined as struct for the need of this library since: 
+    /// It logically represents a single value, similar to primitive types.
+    /// It is immutable.
+    /// </summary>
+    public struct PackageItem
     {
         public int Index { get; set; }
         public double Weight { get; set; }

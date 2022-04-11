@@ -1,7 +1,6 @@
 ﻿
 using Packer.Core.Models;
 using Packer.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,12 +43,14 @@ namespace Packer.Solution.Implementation
             }
             else
             {
+                // Case(1) Return result where item is included in the subset
                 var nthItemIncludedResult = SolveRecursive(new PackageConfiguration() { MaxWeight = packageMaxWeight - lastItem.Weight, ItemOptions = remainingItems });
                 // Store included items and total cost and weight 
                 nthItemIncludedResult.Cost += lastItem.Cost;
                 nthItemIncludedResult.Items.Add(lastItem);
                 nthItemIncludedResult.Weight += lastItem.Weight;
 
+                // Case(2) Return result where item is not included in the subset
                 var nthItemExcludedResult = SolveRecursive(new PackageConfiguration() { MaxWeight = packageMaxWeight, ItemOptions = remainingItems });
 
                 // Return the maximum cost (object result) of two cases: nth item included, nth item not included
@@ -59,7 +60,10 @@ namespace Packer.Solution.Implementation
 
         private static RecursiveSolutionResult Max(RecursiveSolutionResult a, RecursiveSolutionResult b)
         {
-            if (a.Cost == b.Cost) return a.Weight <= b.Weight ? a : b;
+            // If both subsets have the same cost, take the one with smaller weight 
+            if (a.Cost == b.Cost) 
+                return a.Weight <= b.Weight ? a : b;
+
             return a.Cost > b.Cost ? a : b;
         }
     }

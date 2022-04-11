@@ -10,6 +10,9 @@ using System.Text.RegularExpressions;
 
 namespace Packer.ContentProvider
 {
+    /// <summary>
+    /// Implementation of FileContentProvider
+    /// </summary>
     public class PackageConfigurationContentProvider : FileContentProvider
     {
         private readonly IFileOperations _fileOperations;
@@ -30,7 +33,7 @@ namespace Packer.ContentProvider
         protected override List<PackageConfiguration> Transform(ICollection<string> contentLines)
         {
             if (contentLines.Count == 0)
-                throw new ParsingException("Content lines enumerable parameter cannot be empty");
+                throw new ParsingException("Parsing error: Content lines enumerable parameter cannot be empty");
 
             var packagesList = new List<PackageConfiguration>();
 
@@ -59,7 +62,7 @@ namespace Packer.ContentProvider
         private void ValidateLineFormat(string lineString)
         {
             if (linePattern.Match(lineString).Value != lineString)
-                throw new ParsingException($"Source string is not in the correct format. String value: {lineString}");
+                throw new ParsingException($"Parsing error: Source string is not in the correct format. String value: {lineString}");
         }
 
         private string[] GetSections(string lineString)
@@ -67,7 +70,7 @@ namespace Packer.ContentProvider
             var lineSections = lineString.Split(':', 2);
 
             if (lineSections.Length != 2)
-                throw new ParsingException("Source string is not in the correct format");
+                throw new ParsingException("Parsing error: Source string is not in the correct format");
 
             return lineSections;
         }
@@ -77,7 +80,7 @@ namespace Packer.ContentProvider
             var match = regex.Match(itemString);
 
             if (!match.Success)
-                throw new ParsingException($"Error while parsing item source string. Source value: { itemString }");
+                throw new ParsingException($"Parsing error: Error while parsing item source string. Source value: { itemString }");
 
             var index = int.Parse(match.Groups["index"].Value);
             var weight = double.Parse(match.Groups["weight"].Value);

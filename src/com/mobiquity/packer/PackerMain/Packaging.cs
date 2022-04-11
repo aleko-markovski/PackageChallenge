@@ -3,12 +3,12 @@ using System;
 
 namespace Packer
 {
-    public static class Packaging
+    public class Packaging
     {
         /// <summary>
-        /// 
+        /// Method that reads content from file and returns solution to each row (problem). 
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">Path to file. Supports relative and absolute path</param>
         /// <returns></returns>
         /// <exception cref="APIException">The method intersepts all exceptions thrown in the implementation services and </exception>
         public static string Pack(string fileName)
